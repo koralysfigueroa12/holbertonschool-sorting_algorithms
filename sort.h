@@ -4,7 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Struct for doubly linked list used in insertion sort */
+/**
+ * struct listint_s - Doubly linked list node
+ * @n: Integer stored in the node
+ * @prev: Pointer to the previous element of the list
+ * @next: Pointer to the next element of the list
+ *
+ * Description: Doubly linked list node structure used for
+ * insertion sort algorithm.
+ */
 typedef struct listint_s
 {
 	int n;
