@@ -4,17 +4,19 @@
 #include <stddef.h>
 
 /**
- * print_array - Prints an array of integers
- * @array: The array to print
- * @size: Number of elements in the array
+ * struct listint_s - Doubly linked list node
+ * @n: Integer
+ * @prev: Pointer to previous element
+ * @next: Pointer to next element
  */
-void print_array(const int *array, size_t size);
+typedef struct listint_s
+{
+    int n;
+    struct listint_s *prev;
+    struct listint_s *next;
+} listint_t;
 
-/**
- * bubble_sort - Sorts an array of integers using Bubble sort
- * @array: The array to sort
- * @size: Number of elements in the array
- */
-void bubble_sort(int *array, size_t size);
+void print_list(const listint_t *list);
+void insertion_sort_list(listint_t **list);
 
-#endif
+#endif /* SORT_H */
