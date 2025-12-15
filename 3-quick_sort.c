@@ -1,79 +1,46 @@
 #include "sort.h"
 
 /**
- * swap_int - swaps two integers in an array
- * @a: first integer
- * @b: second integer
+ * swap_ints - Swaps two integers in an array
+ * @a: Pointer to first integer
+ * @b: Pointer to second integer
  */
-void swap_int(int *a, int *b)
+void swap_ints(int *a, int *b)
 {
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
+	int temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /**
- * lomuto_partition - partitions an array using Lomuto scheme
- * @array: array to partition
- * @low: start index
- * @high: end index
- * @size: size of the array
- * Return: partition index
+ * lomuto_partition - Partitions an array using Lomuto scheme
+ * @array: Array of integers
+ * @low: Starting index
+ * @high: Ending index (pivot)
+ * @size: Size of the array
+ * Return: Partition index
  */
-size_t lomuto_partition(int *array, size_t low, size_t high, size_t size)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
-    int pivot = array[high];
-    size_t i = low;
-    size_t j;
+	int pivot = array[high];
+	int i = low - 1;
+	int j;
 
-    for (j = low; j < high; j++)
-    {
-        if (array[j] < pivot)
-        {
-            if (i != j)
-            {
-                swap_int(&array[i], &array[j]);
-                print_array(array, size);
-            }
-            i++;
-        }
-    }
-    if (i != high && array[i] != array[high])
-    {
-        swap_int(&array[i], &array[high]);
-        print_array(array, size);
-    }
-    return (i);
-}
-
-/**
- * quick_sort_recursive - recursive helper for quick sort
- * @array: array to sort
- * @low: start index
- * @high: end index
- * @size: size of array
- */
-void quick_sort_recursive(int *array, size_t low, size_t high, size_t size)
-{
-    if (low < high)
-    {
-        size_t pivot_index = lomuto_partition(array, low, high, size);
-
-        if (pivot_index > 0)
-            quick_sort_recursive(array, low, pivot_index - 1, size);
-        quick_sort_recursive(array, pivot_index + 1, high, size);
-    }
-}
-
-/**
- * quick_sort - sorts an array of integers in ascending order
- * @array: array to sort
- * @size: size of the array
- */
-void quick_sort(int *array, size_t size)
-{
-    if (!array || size < 2)
-        return;
-
-    quick_sort_recursive(array, 0, size - 1, size);
-}
+	for (j = low; j < high; j++)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
+			if (i != j)
+			{
+				swap_ints(&array[i], &array[j]);
+				print_array(array, size);
+			}
+		}
+	}
+	if (i + 1 != high)
+	{
+		swap_ints(&array[i + 1], &array[high]);
+		print_array(a_
